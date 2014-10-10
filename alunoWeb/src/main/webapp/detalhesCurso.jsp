@@ -34,7 +34,7 @@
 		<td><%=sdf.format(curso.getDataFim()) %></td>
 	</tr>
 </table>
-<a href="/index.jsp" >Menu Principal</a>
+<a href="index.jsp" >Menu Principal</a>
 </form>
 
 </body>
