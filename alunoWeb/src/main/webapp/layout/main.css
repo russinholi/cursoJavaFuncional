@@ -1,3 +1,17 @@
+#menu ul {
+	list-style-type: none; 
+}
+
+#menu ul li {
+	padding: 2px 10px;
+	display: inline-block;
+
+	/* visual do link */
+	background-color:#EDEDED;
+	color: #333;
+	border-bottom:3px solid #EDEDED;
+}
+
 #menu ul li a {
 	padding: 2px 10px;
 	display: inline-block;

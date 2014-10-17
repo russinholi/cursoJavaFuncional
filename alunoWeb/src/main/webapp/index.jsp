@@ -6,8 +6,12 @@
 <nav id="menu">
 	<ul>
 		<li><a href="index.jsp">Home</a></li>
-		<li><a href="cadastrarCurso.jsp">Novo Curso</a>
-			<li><a href="cursos.jsp">Cursos</a></li>
+		
+		<li>Curso
+			<ul>
+				<li><a href="cadastrarCurso.jsp">Novo Curso</a></li>				
+				<li><a href="curso">Listar Cursos</a></li>
+			</ul>
 		</li>
 		
 	</ul>

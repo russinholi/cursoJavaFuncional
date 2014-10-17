@@ -3,6 +3,7 @@ package dim.jolim.view.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,7 @@ import dim.jolim.model.dao.CursoDao;
 public class CursoServlet extends HttpServlet {
 
 	@Inject
-	private CursoDao cursoRepository;
+	private CursoDao cursoDao;
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -31,21 +32,44 @@ public class CursoServlet extends HttpServlet {
 		String strDtInicio = req.getParameter("dataInicio"); 
 		String strDtFim = req.getParameter("dataFim");
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/detalhesCurso.jsp");
+		String paginaDestino = "/detalhesCurso.jsp";
 		String mensagem = "";
 		try {
 			curso.setNome(nome);
 			curso.setDataInicio(sdf.parse(strDtInicio));
 			curso.setDataFim(sdf.parse(strDtFim));
-			curso = cursoRepository.salvar(curso);
+			curso = cursoDao.salvar(curso);
 			req.setAttribute("curso", curso);
 			mensagem = "Curso salvo com Sucesso!";
 		} catch (ParseException e) {
 			mensagem = "Erro: "+e.getMessage();
-			dispatcher = getServletContext().getRequestDispatcher("/cadastrarCurso.jsp");
+			paginaDestino = "/cadastrarCurso.jsp";
 		}
 		
 		req.setAttribute("mensagem", mensagem);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
 		dispatcher.forward(req, resp);
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String id = req.getParameter("id");
+
+		String paginaDestino = "/listaCursos.jsp";
+		String mensagem = "";
+		if (id == null || id.isEmpty()) {
+			List<Curso> cursos = cursoDao.listarTodosCursos();
+			req.setAttribute("cursos", cursos);
+		} else {
+			Curso curso = cursoDao.buscarPorId(Integer.valueOf(id));
+			req.setAttribute("curso", curso);				
+			paginaDestino = "/detalhesCurso.jsp";
+		}
+		
+		req.setAttribute("mensagem", mensagem);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
+		dispatcher.forward(req, resp);
+		
 	}
 }
