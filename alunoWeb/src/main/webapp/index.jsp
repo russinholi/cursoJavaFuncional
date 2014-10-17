@@ -7,7 +7,7 @@
 	<ul>
 		<li><a href="index.jsp">Home</a></li>
 		
-		<li>Curso
+		<li><a href="#">Curso</a>
 			<ul>
 				<li><a href="cadastrarCurso.jsp">Novo Curso</a></li>				
 				<li><a href="curso">Listar Cursos</a></li>
