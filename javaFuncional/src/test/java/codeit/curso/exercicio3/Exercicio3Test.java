@@ -19,7 +19,8 @@ public class Exercicio3Test {
    * Criar uma string que contenha apenas a primeira letra de cada palavra da lista
    * Obs: Crie um acerte no final para validar o método
    */
-  private void exercise1() {
+  @Test
+  public void exercise1() {
     List<String> list = Arrays.asList(
         "bola", "onomatopéia", "tatu", "estalo");
 
@@ -32,7 +33,8 @@ public class Exercicio3Test {
    * Remover as palavras que tenham tamanho de 7 estalos, ops, 7 caracteres.
    * Obs: Crie um acerte no final para validar o método
    */
-  private void exercise2() {
+  @Test
+  public void exercise2() {
     List<String> list = new ArrayList<>(Arrays.asList(
         "antonio", "lixo", "boteiro", "bueiro", "gavião"));
 
@@ -44,7 +46,8 @@ public class Exercicio3Test {
    *
    * Replace every word in the list with its upper case equivalent.
    */
-  private void exercise3() {
+  @Test
+  public void exercise3() {
     List<String> list = new ArrayList<>(Arrays.asList(
         "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
@@ -57,7 +60,8 @@ public class Exercicio3Test {
    * Convert every key-value pair of the map into a string and append them all
    * into a single string, in iteration order.
    */
-  private void exercise4() {
+  @Test
+  public void exercise4() {
     Map<String, Integer> map = new TreeMap<>();
     map.put("c", 3);
     map.put("b", 2);
@@ -71,19 +75,11 @@ public class Exercicio3Test {
    *
    * Create a new thread that prints the numbers from the list.
    */
-  private void exercise5() {
+  @Test
+  public void exercise5() {
     List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     /* YOUR CODE HERE */
   }
 
-  /**
-   * Main entry point for application
-   *
-   * @param args the command line arguments
-   */
-  public static void main(String[] args) {
-    Exercicio3Test lesson = new Exercicio3Test();
-//    lesson.runExercises();
-  }
 }
