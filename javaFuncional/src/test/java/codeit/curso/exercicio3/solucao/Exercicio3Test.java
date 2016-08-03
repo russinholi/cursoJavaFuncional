@@ -1,9 +1,4 @@
-/**
- * Copyright © 2014, Oracle and/or its affiliates. All rights reserved.
- *
- * JDK 8 MOOC Lesson 1 homework
- */
-package codeit.curso.exercicio3;
+package codeit.curso.exercicio3.solucao;
 
 import codeit.curso.exercicio2.Funcionario;
 import org.junit.Assert;
@@ -12,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Exercicio3Test {
 
@@ -72,16 +68,13 @@ public class Exercicio3Test {
     }
 
     private String gerarBoasVindas(String nome) {
-        if (nome != null)
-            return "Bem vindo "+nome;
-
-        return "Bem vindo Sem Nome";
+        return "Bem vindo "+Optional.ofNullable(nome).orElse("Sem Nome");
     }
 
     /**
      * Exercicio 5
      *
-     * Altere o método imprimirNomeFuncionario por uma expressão com Optional
+     * Troque a declaração que usa if no método imprimirNomeFuncionario por uma expressão com Optional
      * de forma que o teste exercicio5 rode.
      * DICA: USE Option.of(valor) ou Option.ofNullable(valor) PARA CONVERTER UMA VALOR EM OPTIONAL
      *       Ex: Optional.of(funcionario)
@@ -89,15 +82,14 @@ public class Exercicio3Test {
     @Test
     public void exercicio5() {
         Funcionario funcionario = new Funcionario();
-        funcionario.setNome("João Panelero");
+        String nome = "João Panelero";
         imprimirNomeFuncionario(funcionario);
         imprimirNomeFuncionario(null);
     }
 
     private void imprimirNomeFuncionario(Funcionario funcionario) {
-           System.out.println(funcionario.getNome());
+        Optional.ofNullable(funcionario).ifPresent(f -> System.out.println(f.getNome()));
     }
-
 
     /**
      * Exercicio 6
@@ -118,9 +110,8 @@ public class Exercicio3Test {
     }
 
     private String filtrarFuncionario(Funcionario funcionario) {
-        if (funcionario.getNome().equals("Francisco"))
-            return "Achou";
-        return "Não achou";
+        return Optional.ofNullable(funcionario).filter(f -> "Francisco".equals(f.getNome())).map(f -> "Achou").orElse("Não achou");
     }
 
 }
+
