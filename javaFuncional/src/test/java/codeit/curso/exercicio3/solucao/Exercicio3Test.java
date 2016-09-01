@@ -22,7 +22,9 @@ public class Exercicio3Test {
         List<String> list = Arrays.asList(
                 "bola", "onomatopéia", "tatu", "estalo");
 
-    /* YOUR CODE HERE */
+        final StringBuffer resultado = new StringBuffer();
+        list.forEach(s -> resultado.append(s.substring(0,1)));
+        System.out.println(resultado);
     }
 
     /**
@@ -35,8 +37,8 @@ public class Exercicio3Test {
     public void exercicio2() {
         List<String> list = new ArrayList<>(Arrays.asList(
                 "francisco", "lixo", "boteiro", "bueiro", "gavião"));
-
-    /* YOUR CODE HERE */
+        list.removeIf(s -> s.length()== 7);
+        list.forEach(System.out::println);
     }
 
     /**
@@ -49,7 +51,8 @@ public class Exercicio3Test {
         List<String> list = new ArrayList<>(Arrays.asList(
                 "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
-    /* YOUR CODE HERE */
+        list.replaceAll(s -> s.toUpperCase());
+        list.forEach(System.out::println);
     }
 
     /**
